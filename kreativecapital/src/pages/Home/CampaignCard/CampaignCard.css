@@ -1,0 +1,164 @@
+#campaigns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.campaign-card {
+  border: 2px solid #71f2e3;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  background-color: #3c1e53;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, max-height 0.3s ease;
+  max-height: 150px;
+  overflow: hidden;
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top */
+}
+
+.campaign-card.open {
+  max-height: 500px;
+}
+
+.campaign-card h4 {
+  font-size: 2.4rem;
+  text-align: center;
+  color: #71f2e3;
+  margin: 5px 0; /* Reduce margin to bring text closer to the top */
+}
+
+.description {
+  font-family: 'Roboto Serif', serif;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.campaign-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px; /* Move it closer to the description */
+  font-size: 1.5rem;
+}
+
+.campaign-info .goal,
+.campaign-info .percentage,
+.campaign-info .time-left {
+  flex: 1;
+  text-align: center;
+}
+
+.campaign-info .goal {
+  color: #71f2e3;
+}
+
+.campaign-info .percentage {
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #00ff00, #ee82ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.campaign-info .time-left {
+  color: #e61e1e;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  border: 2px solid #71f2e3;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  text-align: center;
+  height: 50px;
+  background-color: #1f1f1f;
+  color: #71f2e3;
+}
+
+.contribute-button {
+  background-color: #000;
+  color: #71f2e3;
+  padding: 10px;
+  border: 2px solid #71f2e3;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contribute-button:hover {
+  background-color: #71f2e3;
+  color: #000;
+}
+
+.expanded-content {
+  margin-top: 15px;
+}
+
+.close-button {
+  position: absolute;
+  top: -4px;
+  right: 5px;
+  background-color: #ff4c4c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background-color: #3c1e53;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  max-width: 300px;
+  width: 80%;
+}
+
+.close-popup-button {
+  background-color: #ff4c4c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}

@@ -1,0 +1,51 @@
+/* General styles */
+body {
+  margin: 0;
+  font-family: 'Roboto Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #2d0d35; /* Dark purple background */
+  color: #71F2E3; /* Updated text color */
+}
+
+/* Footer styles */
+footer {
+  background-color: #000000; /* Black background for footer */
+  color: #71F2E3; /* Updated text color for footer */
+  font-family: 'Cinzel', serif; /* Font for footer text */
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  font-size: 16px;
+}
+
+footer .glow-text::before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background-size: 200%;
+  z-index: -1;
+  filter: blur(8px);
+  animation: glowing-text 10s linear infinite;
+  opacity: 1;
+  border-radius: 5px;
+}
+
+/* Color shifting effect for text */
+@keyframes glowing-text {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

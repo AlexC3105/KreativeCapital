@@ -1,0 +1,43 @@
+{
+    "name": "kreativecapital",
+    "version": "1.0.0",
+    "description": "A decentralized crowdfunding platform using Ethereum smart contracts",
+    "private": true,
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "ethers": "^6.13.2",
+        "ganache": "^7.9.2",
+        "web3": "^4.12.1"
+    },
+    "devDependencies": {
+        "@nomicfoundation/hardhat-chai-matchers": "^2.0.7",
+        "@nomicfoundation/hardhat-ethers": "^3.0.7",
+        "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
+        "@nomicfoundation/hardhat-verify": "^2.0.9",
+        "@openzeppelin/contracts": "^5.0.2",
+        "@typechain/ethers-v6": "^0.5.1",
+        "@typechain/hardhat": "^9.1.0",
+        "@types/chai": "^4.3.17",
+        "@types/mocha": "^10.0.7",
+        "chai": "^4.5.0",
+        "hardhat": "^2.22.9",
+        "mocha": "^10.7.3",
+        "solidity-coverage": "^0.8.12",
+        "ts-node": "^10.9.2",
+        "typechain": "^8.3.2"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "compile": "hardhat compile",
+        "deploy": "hardhat run scripts/deploy.js --network localhost",
+        "test:contracts": "hardhat test",
+        "coverage": "hardhat coverage"
+    },
+    "engines": {
+        "node": ">=16.0.0",
+        "npm": ">=8.0.0"
+    }
+}

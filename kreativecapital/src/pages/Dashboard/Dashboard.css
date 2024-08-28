@@ -1,0 +1,125 @@
+/* Dashboard container */
+.dashboard-container {
+    background-color: #2C0A35; /* Match the background color */
+    color: #71f2e3;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh; /* Ensure the container covers the full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content */
+    align-items: center; /* Center align the content horizontally */
+}
+
+/* Input text styling */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #000;
+    border: 1px solid #71f2e3;
+    color: #71f2e3;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Updated button styling to match CreateCampaign */
+button {
+    background-color: #000; /* Always black */
+    color: #71f2e3; /* Teal text color */
+    border: 1px solid #71f2e3;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: not-allowed; /* Default non-clickable state */
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    display: block;
+    margin: 1rem auto;
+    position: relative;
+    z-index: 0;
+    transition: box-shadow 0.3s ease;
+}
+
+button:disabled {
+    background-color: #000; /* Always black */
+    color: #999; /* Lighter text when disabled */
+    cursor: not-allowed; /* Change cursor to indicate non-clickable */
+}
+
+button:enabled {
+    cursor: pointer; /* Pointer cursor to indicate clickable */
+    box-shadow: 0 0 15px #71f2e3; /* Teal underglow when enabled */
+}
+
+/* Updated campaign details card styling */
+.campaign-details {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #333; /* Charcoal dark gray background */
+    border: 1px solid #71f2e3;
+    border-radius: 10px;
+    text-align: center;
+    color: #71f2e3;
+    font-family: 'Cinzel', serif;
+    width: 100%; /* Ensure full width within the container */
+    max-width: 600px; /* Match max-width of the container */
+}
+
+/* Time and progress info styling */
+.campaign-details .time-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.campaign-details .time-info .time-left,
+.campaign-details .time-info .time-remaining {
+    background-color: #000;
+    border: 1px solid #71f2e3;
+    color: #71f2e3;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem; /* Increased font size */
+    font-weight: bold;
+    width: 48%;
+    text-align: center;
+}
+
+/* Updated progress bar to match the theme */
+.progress-bar-container {
+    background-color: #000;
+    border: 1px solid #71f2e3;
+    border-radius: 5px;
+    margin: 20px 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%; /* Ensure full width within the container */
+}
+
+.progress-bar {
+    height: 20px;
+    line-height: 20px;
+    color: black;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #71f2e3; /* Teal color for progress */
+    transition: width 1s ease;
+}
+
+/* Specific colors for funded and unfunded states */
+.progress-bar.funded {
+    background-color: #48ff00; /* Green for fully funded */
+}
+
+.progress-bar.unfunded {
+    background-color: #ff0000; /* Red for unfunded */
+}

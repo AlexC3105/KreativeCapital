@@ -1,0 +1,117 @@
+.my-account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #2C0A35; /* Match the background with other pages */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #000;
+  color: #71f2e3; /* Teal text color */
+  width: 100%;
+  max-width: 800px; /* Limit the max-width for better layout */
+  margin: 0 auto; /* Center the container */
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+.balances,
+.buy-tokens,
+.campaigns {
+  margin-bottom: 2rem;
+  text-align: center;
+  width: 100%;
+  max-width: 600px; /* Keep the content centered and aligned */
+  background-color: #333; /* Charcoal dark gray background for sections */
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+.balances h3,
+.buy-tokens h3,
+.campaigns h3 {
+  color: #71f2e3;
+  margin-bottom: 1rem;
+  font-size: 1.5rem; /* Slightly larger headings */
+}
+
+.balances p,
+.campaigns p {
+  color: #fff;
+  font-size: 1.2rem; /* Increase the font size for readability */
+}
+
+input,
+select,
+button {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #000;
+  border: 1px solid #71f2e3;
+  color: #71f2e3;
+  border-radius: 5px;
+  width: 100%; /* Full width within container */
+  max-width: 100%; /* Ensure consistent alignment within the container */
+  box-sizing: border-box; /* Include padding and border in width */
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+}
+
+button {
+  box-shadow: 0 0 15px #71f2e3; /* Add teal underglow */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+button:disabled {
+  background-color: #333;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none; /* Remove shadow when disabled */
+}
+
+button:enabled:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px #71f2e3; /* Glow effect on hover */
+}
+
+.campaign-card {
+  background-color: #3b1e4d; /* Darker purple for contrast */
+  color: #fff;
+  padding: 15px;
+  margin: 10px auto; /* Center the campaign cards */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 90%; /* Adjust the width so they don't overshoot */
+  max-width: 550px; /* Ensure cards are aligned and sized consistently */
+}
+
+.campaign-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
+}
+
+.campaign-card h4 {
+  margin-bottom: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem; /* Increase the font size */
+}
+
+.campaign-card p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #ccc; /* Slightly lighter color for the description */
+}
+
+.wallet-selector {
+  margin-bottom: 10px;
+  background-color: #000;
+  border: 1px solid #71f2e3;
+  color: #71f2e3;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%; /* Full width of the selector */
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+}

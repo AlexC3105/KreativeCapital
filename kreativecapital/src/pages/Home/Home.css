@@ -1,0 +1,194 @@
+/* Ensure the home background is consistent */
+.home {
+    background-color: #2C0A35; /* Dark purple background color */
+    min-height: 100vh; /* Use min-height to ensure it covers the full viewport */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure footer stays at the bottom */
+}
+
+/* Style for the text container */
+#text-container {
+    position: absolute;
+    top: 5%; /* Adjusted this value to move the text up */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    z-index: 1; /* Ensure text is above the globe */
+}
+
+/* Apply gradient directly to the text */
+#text-container h1,
+#text-container h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700; /* Add more weight to the text if needed */
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent; /* Make the text color transparent to show the gradient */
+    animation: glowing-text 10s linear infinite;
+    margin: 0;
+    padding: 0;
+}
+
+/* Keyframes for the glowing text effect */
+@keyframes glowing-text {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Globe container styling */
+#globe-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex-grow: 1; /* Allow the globe container to grow and fill the available space */
+}
+
+/* Canvas styling */
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Campaigns container styling */
+#campaigns-container {
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    align-items: center; /* Center the content vertically within the container */
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    min-height: 200px; /* Ensure there's enough height for centering */
+    text-align: center; /* Center the text */
+    flex-direction: column; /* Arrange content in a column */
+}
+
+/* If there are no campaigns available */
+#campaigns-container p {
+    color: #71f2e3; /* Ensure the text is visible */
+    font-family: 'Cinzel', serif; /* Match font with other elements */
+    font-size: 1.2rem; /* Increase font size for better visibility */
+    margin: 0; /* Remove margin */
+    padding: 20px 0; /* Add padding */
+}
+
+/* Campaigns grid styling */
+.campaigns-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allows the cards to wrap to the next line */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center the cards horizontally */
+    max-width: 1200px; /* Limit the width of the grid */
+    width: 100%;
+}
+
+/* Campaign card styling */
+.campaign-card {
+    background-color: #3b1e4d; /* Slightly darker background for contrast */
+    color: #fff;
+    padding: 15px;
+    margin: 10px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    border: 1px solid #71f2e3; /* Add a teal border to the cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Center-align all text within the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensure the card takes up full height */
+}
+
+.campaign-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.7);
+}
+
+.campaign-card h4 {
+    margin-bottom: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem; /* Increase the font size */
+    font-weight: bold; /* Make the title bold */
+    color: #71F2E3; /* Match text color to the theme */
+}
+
+.campaign-card p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    color: #ccc; /* Slightly lighter color for the description */
+}
+
+/* Additional info for the campaign card */
+.campaign-info {
+    font-size: 0.85rem;
+    color: #71f2e3; /* Teal color for additional info */
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campaign-info span {
+    display: block;
+}
+
+.campaign-info .goal {
+    font-weight: bold;
+}
+
+.campaign-info .percentage {
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+.campaign-info .time-left {
+    font-family: 'Roboto', sans-serif;
+    color: #ff7300; /* Different color for time left */
+}
+
+/* Contribute button */
+.contribute-button {
+    background-color: #000; /* Black button */
+    color: #71f2e3; /* Teal text color */
+    border: 1px solid #71f2e3;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    margin-top: 15px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.contribute-button:hover {
+    box-shadow: 0 0 10px #71f2e3;
+    transform: translateY(-3px);
+}
+
+/* Footer styling */
+footer {
+    background-color: #000000; /* Black background */
+    color: #71F2E3; /* Updated text color */
+    text-align: center;
+    padding: 20px 0; /* Padding for the footer */
+    font-family: 'Cinzel', serif; /* Font for the footer */
+    width: 100%;
+    position: relative;
+    z-index: 10; /* Ensure the footer is above other content */
+    flex-shrink: 0; /* Prevent the footer from shrinking */
+    margin-top: auto; /* Ensure the footer stays at the bottom */
+    font-weight: bold; /* Make the footer text bold */
+}
