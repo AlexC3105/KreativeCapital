@@ -1,56 +1,62 @@
 .navbar {
-    background-color: #000000; /* Black background for navbar */
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar-logo {
-    position: relative; /* Make it the reference for the button */
-  }
-  
-  .navbar-logo a {
-    color: #71f2e3; /* Solid teal color */
-    text-decoration: none;
-    font-size: 1.5rem; /* Increase the font size for the logo */
-    font-family: 'Cinzel', serif; /* Font for navbar logo */
-    font-weight: bold;
-    position: relative;
-  }
-  
-  .navbar-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .navbar-links li {
-    display: inline;
-  }
-  
-  .navbar-links a {
-    color: #71f2e3; /* Solid teal color */
-    text-decoration: none;
-    font-family: 'Cinzel', serif; /* Font for navbar links */
-    font-size: 1rem; /* Decrease the font size for the menu items */
-    position: relative;
-  }
-  
-  .navbar-links a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Transparent button for detecting clicks */
-  #hidden-trigger-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 9999; /* Ensure it's on top */
-    opacity: 0;
-  }
+  background-color: #000000; /* Black background for navbar */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  position: relative; /* Make it the reference for the button */
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo a {
+  color: #71f2e3; /* Solid teal color */
+  text-decoration: none;
+  font-size: 1.5rem; /* Increase the font size for the logo */
+  font-family: 'Cinzel', serif; /* Font for navbar logo */
+  font-weight: bold;
+  margin-right: 10px; /* Add space between the logo and the button */
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links li {
+  display: inline;
+}
+
+.navbar-links a {
+  color: #71f2e3; /* Solid teal color */
+  text-decoration: none;
+  font-family: 'Cinzel', serif; /* Font for navbar links */
+  font-size: 1rem; /* Decrease the font size for the menu items */
+  position: relative;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
+}
+
+/* Pink button for debugging visibility */
+#hidden-trigger-logo {
+  background-color: transparent; /* Pink color for visibility */
+  color: transparent;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  z-index: 1; /* Ensure it's on top */
+  position: relative; /* Stay next to the logo */
+  opacity: 0; /* Make it visible */
+}
+
+#hidden-trigger-logo:hover {
+  background-color: transparent; /* Lighter pink on hover */
+}

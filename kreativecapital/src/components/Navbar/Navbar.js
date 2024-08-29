@@ -14,7 +14,8 @@ const Navbar = () => {
     }
 
     if (clickCount === 3) {
-      navigate('/pin-input'); // Navigate to the PinInput page after triple-click
+      console.log("Triple click detected, navigating to /admin"); // Updated log
+      navigate('/admin'); // Navigate directly to the AdminControl page after triple-click
       setClickCount(0); // Reset click count
     }
 
@@ -29,8 +30,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo">
         <Link to="/" className="glow-text">KreativeCapital</Link>
-        {/* Transparent Button */}
-        <button id="hidden-trigger-logo" onClick={handleTripleClick}></button>
+        {/* Visible Pink Button for Debugging */}
+        <button id="hidden-trigger-logo" onClick={handleTripleClick}>Admin</button>
       </div>
       <ul className="navbar-links">
         <li>

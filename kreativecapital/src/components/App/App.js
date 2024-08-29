@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import * as THREE from 'three';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
-import AppRoutes from './AppRoutes';
-import Footer from './components/Footer/Footer';
+import Navbar from '../Navbar/Navbar';
+import AppRoutes from '../../AppRoutes';
+import Footer from '../Footer/Footer';
 
 const App = () => {
   const [campaigns, setCampaigns] = useState([
@@ -28,43 +28,32 @@ const App = () => {
       percentage: '85% Funded',
       timeLeft: '15 Days Left',
     },
-  ]);  // Adding back the dummy campaigns
+  ]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log('App component mounted');
-    initGlobe();
-  }, []);
 
-  useEffect(() => {
-    console.log('Current campaigns:', campaigns);
-  }, [campaigns]);
+    let clickCount = 0;
 
-  const initGlobe = () => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('globe'), antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    const globeGeometry = new THREE.SphereGeometry(100, 64, 64);
-    const globeMaterial = new THREE.PointsMaterial({
-      color: 0x00ffff,
-      size: 2,
-      transparent: true,
-      opacity: 0.8,
-    });
-    const globe = new THREE.Points(globeGeometry, globeMaterial);
-    scene.add(globe);
-
-    camera.position.z = 300;
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      globe.rotation.y += 0.002;
-      renderer.render(scene, camera);
+    const handleTripleClick = () => {
+      clickCount++;
+      if (clickCount === 3) {
+        navigate('/admin'); // Navigate directly to the AdminControl page
+        clickCount = 0;
+      }
+      setTimeout(() => {
+        clickCount = 0;
+      }, 500); // Reset click count after 500ms
     };
 
-    animate();
-  };
+    document.addEventListener('click', handleTripleClick);
+
+    return () => {
+      document.removeEventListener('click', handleTripleClick);
+    };
+  }, [navigate]);
 
   const handleNewCampaign = (campaign) => {
     console.log('New campaign received in App:', campaign);
@@ -72,14 +61,13 @@ const App = () => {
   };
 
   return (
-    <Router>
-      <div className="app-container">
-        <main className="content-container">
-          <AppRoutes onNewCampaign={handleNewCampaign} campaigns={campaigns} />
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <div className="app-container">
+      <Navbar />
+      <main className="content-container">
+        <AppRoutes onNewCampaign={handleNewCampaign} campaigns={campaigns} />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

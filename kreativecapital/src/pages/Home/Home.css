@@ -23,16 +23,31 @@
 }
 
 /* Apply gradient directly to the text */
-#text-container h1,
-#text-container h2 {
+/* Adjusting the size of the h1 and h2 individually */
+#text-container h1 {
+    font-size: 2.5rem; /* Adjust the size as desired for the h1 */
     font-family: 'Cinzel Decorative', serif;
-    font-weight: 700; /* Add more weight to the text if needed */
+    font-weight: 700;
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     background-size: 400%;
     background-clip: text;
     -webkit-background-clip: text;
-    color: transparent; /* Make the text color transparent to show the gradient */
-    animation: glowing-text 10s linear infinite;
+    color: transparent;
+    animation: glowing-text 7s linear infinite;
+    margin: 0;
+    padding: 0;
+}
+
+#text-container h2 {
+    font-size: 2rem; /* Adjust the size as desired for the h2 */
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: glowing-text 7s linear infinite;
     margin: 0;
     padding: 0;
 }

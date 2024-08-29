@@ -2,20 +2,17 @@ import React, { useEffect } from 'react';
 import * as THREE from 'three';
 import './Home.css';
 import ethLogo from '../../assets/images/ethereum-symbol.png';
-import Footer from '../../components/Footer/Footer';
-import { useNavigate } from 'react-router-dom';
 import CampaignCard from './CampaignCard/CampaignCard';
 
 const Home = ({ campaigns = [] }) => {
-  const navigate = useNavigate();
-
-  console.log('Campaigns received in Home:', campaigns);
 
   useEffect(() => {
+    const canvas = document.getElementById('globe');
+    if (!canvas) return;
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('globe'), antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setClearColor(0x000000, 0);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -40,54 +37,47 @@ const Home = ({ campaigns = [] }) => {
 
     camera.position.z = 300;
 
-    function animate() {
+    const animate = () => {
       requestAnimationFrame(animate);
       globe.rotation.y += 0.002;
       renderer.render(scene, camera);
-    }
+    };
 
     animate();
 
-    function onWindowResize() {
+    const onWindowResize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-    }
+    };
 
-    window.addEventListener('resize', onWindowResize, false);
+    window.addEventListener('resize', onWindowResize);
 
     return () => {
-      window.removeEventListener('resize', onWindowResize, false);
+      window.removeEventListener('resize', onWindowResize);
     };
   }, []);
 
-  const handleSingleClick = () => {
-    navigate('/pin-input');
-  };
-
   return (
     <div className="home">
-      <div id="text-container" onClick={handleSingleClick}>
+      <div id="text-container">
         <h1>Welcome to Kreative Capital</h1>
         <h2>Your Future, Our Mission</h2>
       </div>
       <div id="globe-container">
         <canvas id="globe"></canvas>
       </div>
-      <div id="campaigns-container"> {/* Container for the campaign cards */}
-        {campaigns.length === 0 && (
+      <div id="campaigns-container">
+        {campaigns.length === 0 ? (
           <p>No campaigns available.</p>
+        ) : (
+          <div className="campaigns-grid">
+            {campaigns.map((campaign, index) => (
+              <CampaignCard key={index} campaign={campaign} />
+            ))}
+          </div>
         )}
-        <div className="campaigns-grid"> {/* Grid container for better card alignment */}
-          {campaigns.map((campaign, index) => (
-            <CampaignCard
-              key={index}
-              campaign={campaign}
-            />
-          ))}
-        </div>
       </div>
-      <Footer />
     </div>
   );
 };
