@@ -11,11 +11,14 @@ contract CrowdfundingCampaign is ReentrancyGuard {
 
     mapping(address => uint256) public contributions;
 
-    event ContributionMade(address contributor, uint256 amount);
-    event FundsWithdrawn(address owner, uint256 amount);
-    event RefundIssued(address contributor, uint256 amount);
+    event ContributionMade(address indexed contributor, uint256 amount);
+    event FundsWithdrawn(address indexed owner, uint256 amount);
+    event RefundIssued(address indexed contributor, uint256 amount);
 
     constructor(uint256 _goalAmount, uint256 _duration) {
+        require(_goalAmount > 0, "Goal amount must be greater than zero");
+        require(_duration > 0, "Duration must be greater than zero");
+
         campaignOwner = msg.sender;
         goalAmount = _goalAmount;
         deadline = block.timestamp + _duration;
@@ -23,6 +26,8 @@ contract CrowdfundingCampaign is ReentrancyGuard {
 
     function contribute() external payable nonReentrant {
         require(block.timestamp < deadline, "Campaign has ended");
+        require(msg.value > 0, "Contribution must be greater than zero");
+
         contributions[msg.sender] += msg.value;
         totalContributed += msg.value;
         emit ContributionMade(msg.sender, msg.value);
@@ -41,6 +46,8 @@ contract CrowdfundingCampaign is ReentrancyGuard {
         require(checkGoalReached(), "Goal not reached");
 
         uint256 balance = address(this).balance;
+        require(balance > 0, "No funds to withdraw");
+
         payable(campaignOwner).transfer(balance);
         emit FundsWithdrawn(campaignOwner, balance);
     }
@@ -53,10 +60,7 @@ contract CrowdfundingCampaign is ReentrancyGuard {
         );
 
         uint256 contributedAmount = contributions[msg.sender];
-        require(
-            contributedAmount > 0,
-            "No contributions found for this address"
-        );
+        require(contributedAmount > 0, "No contributions found for this address");
 
         contributions[msg.sender] = 0;
         payable(msg.sender).transfer(contributedAmount);

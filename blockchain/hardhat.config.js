@@ -13,16 +13,16 @@ module.exports = {
     ganache: {
       url: "http://127.0.0.1:7545", // Ganache's default RPC server URL
       accounts: [
-        process.env.GANACHE_PRIVATE_KEY_1,
-        process.env.GANACHE_PRIVATE_KEY_2,
-        process.env.GANACHE_PRIVATE_KEY_3,
-        process.env.GANACHE_PRIVATE_KEY_4,
-        process.env.GANACHE_PRIVATE_KEY_5,
-        process.env.GANACHE_PRIVATE_KEY_6,
-        process.env.GANACHE_PRIVATE_KEY_7,
-        process.env.GANACHE_PRIVATE_KEY_8,
-        process.env.GANACHE_PRIVATE_KEY_9,
-        process.env.GANACHE_PRIVATE_KEY_10,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_1,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_2,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_3,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_4,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_5,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_6,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_7,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_8,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_9,
+        process.env.REACT_APP_GANACHE_PRIVATE_KEY_10,
       ].filter(Boolean), // Ensure no undefined values are passed
     },
     localhost: {

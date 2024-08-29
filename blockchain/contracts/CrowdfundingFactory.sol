@@ -2,8 +2,8 @@
 pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract CrowdfundingFactory is Ownable, ReentrancyGuard {
     struct Campaign {
@@ -37,12 +37,12 @@ contract CrowdfundingFactory is Ownable, ReentrancyGuard {
     event CampaignSuccessful(uint256 indexed campaignId);
     event CampaignFailed(uint256 indexed campaignId);
 
-    constructor(address _kreativeTokenAddress) Ownable(msg.sender) {
+    constructor(address _kreativeTokenAddress) {
         kreativeToken = IERC20(_kreativeTokenAddress);
     }
 
     function createCampaign(
-        string memory _name,
+        string calldata _name,
         uint256 _goal,
         uint256 _days,
         uint256 _hours,
@@ -75,7 +75,7 @@ contract CrowdfundingFactory is Ownable, ReentrancyGuard {
     }
 
     function contribute(
-        string memory _name,
+        string calldata _name,
         uint256 _amount
     ) external nonReentrant {
         uint256 _campaignId = campaignIdsByName[_name];
@@ -107,7 +107,7 @@ contract CrowdfundingFactory is Ownable, ReentrancyGuard {
         totalFees = 0;
     }
 
-    function checkCampaignStatus(string memory _name) external {
+    function checkCampaignStatus(string calldata _name) external {
         uint256 _campaignId = campaignIdsByName[_name];
         Campaign storage campaign = campaigns[_campaignId];
         require(
@@ -122,7 +122,7 @@ contract CrowdfundingFactory is Ownable, ReentrancyGuard {
     }
 
     function getCampaignIdByName(
-        string memory _name
+        string calldata _name
     ) external view returns (uint256) {
         return campaignIdsByName[_name];
     }

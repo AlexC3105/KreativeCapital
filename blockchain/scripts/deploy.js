@@ -2,51 +2,45 @@ const { ethers } = require("hardhat");
 const fs = require("fs");
 
 async function main() {
-    // Log ethers object to verify it's loaded correctly
-    console.log("Ethers object: ", ethers);
-
-    // Get the deployer's account and balance
     const [deployer] = await ethers.getSigners();
+
     console.log("Deploying contracts with the account:", deployer.address);
-    console.log("Account balance:", (await deployer.getBalance()).toString());
+    console.log("Deployer object:", deployer); // Log the deployer object for debugging
 
-    // Deploy KreativeToken
+    // Fetch the balance of the deployer
+    try {
+        const balance = await deployer.provider.getBalance(deployer.address);
+        console.log("Account balance:", ethers.utils.formatEther(balance), "ETH");
+    } catch (error) {
+        console.error("Error fetching balance:", error);
+    }
+
+    // Deploy KreativeToken contract
     const KreativeToken = await ethers.getContractFactory("KreativeToken");
-    const kreativeToken = await KreativeToken.deploy(deployer.address);
+    const kreativeToken = await KreativeToken.deploy();
 
-    // Wait for the contract to be deployed
-    await kreativeToken.deployed();
-    console.log("KreativeToken address:", kreativeToken.address);
+    await kreativeToken.waitForDeployment();
+    console.log("KreativeToken address:", await kreativeToken.getAddress());
 
     // Save the KreativeToken contract address to the .env file
-    fs.appendFileSync('.env', `REACT_APP_KREATIVE_TOKEN_ADDRESS=${kreativeToken.address}\n`, { flag: 'a' });
+    fs.appendFileSync('.env', `REACT_APP_KREATIVE_TOKEN_ADDRESS=${await kreativeToken.getAddress()}\n`);
     console.log("KreativeToken address saved to .env file");
 
-    // Deploy CrowdfundingFactory
+    // Deploy CrowdfundingFactory contract
     const CrowdfundingFactory = await ethers.getContractFactory("CrowdfundingFactory");
-    const crowdfundingFactory = await CrowdfundingFactory.deploy(kreativeToken.address);
+    const crowdfundingFactory = await CrowdfundingFactory.deploy(await kreativeToken.getAddress());
 
-    // Wait for the contract to be deployed
-    await crowdfundingFactory.deployed();
-    console.log("CrowdfundingFactory address:", crowdfundingFactory.address);
+    await crowdfundingFactory.waitForDeployment();
+    console.log("CrowdfundingFactory address:", await crowdfundingFactory.getAddress());
 
     // Save the CrowdfundingFactory contract address to the .env file
-    fs.appendFileSync('.env', `REACT_APP_CROWDFUNDING_FACTORY_ADDRESS=${crowdfundingFactory.address}\n`, { flag: 'a' });
+    fs.appendFileSync('.env', `REACT_APP_CROWDFUNDING_FACTORY_ADDRESS=${await crowdfundingFactory.getAddress()}\n`);
     console.log("CrowdfundingFactory address saved to .env file");
-
-    // Deploy CrowdfundingCampaign (if needed)
-    // const CrowdfundingCampaign = await ethers.getContractFactory("CrowdfundingCampaign");
-    // const crowdfundingCampaign = await CrowdfundingCampaign.deploy(/* constructor args */);
-    // await crowdfundingCampaign.deployed();
-    // console.log("CrowdfundingCampaign address:", crowdfundingCampaign.address);
-    // fs.appendFileSync('.env', `REACT_APP_CROWDFUNDING_CAMPAIGN_ADDRESS=${crowdfundingCampaign.address}\n`, { flag: 'a' });
-    // console.log("CrowdfundingCampaign address saved to .env file");
 }
 
-// Error handling
 main()
     .then(() => process.exit(0))
-    .catch((error) => {
+    .catch(error => {
         console.error("Error deploying contracts:", error);
         process.exit(1);
     });

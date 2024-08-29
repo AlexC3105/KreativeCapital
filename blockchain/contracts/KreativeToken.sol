@@ -8,12 +8,9 @@ contract KreativeToken is ERC20, Ownable {
     uint256 public constant TOTAL_SUPPLY = 1_000_000 * 10 ** 18;
     uint256 public constant RATE = 100; // 100 KT per 1 ETH
 
-    // Constructor with proper argument for Ownable base contract
-    constructor(
-        address initialOwner
-    ) ERC20("KreativeToken", "KT") Ownable(initialOwner) {
-        require(initialOwner != address(0), "Invalid owner address");
-        _mint(initialOwner, TOTAL_SUPPLY);
+    // Constructor without arguments for Ownable base contract
+    constructor() ERC20("KreativeToken", "KT") {
+        _mint(msg.sender, TOTAL_SUPPLY);
     }
 
     function buyTokens() external payable {
