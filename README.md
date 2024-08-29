@@ -89,21 +89,25 @@ Kreative Capital incorporates several innovative features designed to provide a 
 Kreative Capital is built on a robust and modular architecture designed to ensure scalability, security, and ease of use. The project is organized into three main components: the Smart Contracts, the Front-End Interface, and the Back-End Integration. Below is a detailed breakdown of each component:
 
 1. **Smart Contracts**:
+
    - **KreativeToken Contract**: This contract handles the creation and management of the KreativeToken (KT) used within the platform. It includes functionalities for minting tokens, managing balances, and handling token transfers between users.
    - **CrowdfundingFactory Contract**: This contract acts as a factory for creating individual crowdfunding campaigns. Each campaign is deployed as a separate contract, ensuring that each project is isolated and managed independently.
    - **CrowdfundingCampaign Contract**: This contract represents each individual crowdfunding campaign. It includes logic for managing contributions, verifying the campaign's success, and handling fund withdrawals or refunds.
 
 2. **Front-End Interface**:
+
    - **React Application**: The user interface is built using React, a popular JavaScript library for building interactive UIs. React ensures a responsive and dynamic user experience, allowing users to interact with the platform seamlessly.
    - **Web3 Integration**: The front-end uses Web3.js to connect with the Ethereum blockchain, enabling users to interact with smart contracts directly from their web browsers. This integration allows for real-time updates and ensures that users can manage their campaigns and contributions efficiently.
    - **Wallet Integration**: The platform supports MetaMask, a widely used Ethereum wallet, allowing users to connect their wallets to the platform securely. This integration enables users to exchange Ether for KreativeToken, create campaigns, and contribute to projects directly from their wallets.
 
 3. **Back-End Integration**:
+
    - **Node.js/Express.js Server**: A lightweight backend server built with Node.js and Express.js is used to serve the front-end application and handle any necessary server-side logic, such as interacting with external APIs or managing user sessions.
    - **Ganache for Local Blockchain**: During development and testing, Ganache is used to simulate a local Ethereum blockchain. This allows developers to test smart contracts and front-end interactions in a controlled environment before deploying them to a live network.
    - **Mocha/Chai Testing Framework** (Optional): For thorough testing, the smart contracts can be tested using the Mocha/Chai framework. This ensures that all functions behave as expected and that the contracts are secure and reliable.
 
 4. **Data Storage** (Optional):
+
    - **IPFS Integration**: For campaigns requiring the storage of large files or media, the platform can integrate with IPFS (InterPlanetary File System) to store data in a decentralized and tamper-proof manner. This ensures that all campaign-related data is immutable and accessible to users at all times.
 
 5. **Security and Scalability**:
@@ -115,28 +119,34 @@ Kreative Capital is built on a robust and modular architecture designed to ensur
 Kreative Capital offers a range of features designed to make decentralized crowdfunding accessible, transparent, and efficient. Below is a detailed overview of the platform's key features:
 
 1. **Campaign Creation**:
+
    - **User-Friendly Interface**: Users can easily create a new crowdfunding campaign by providing essential details such as the campaign name, description, funding goal, and duration. The process is streamlined to ensure that anyone, regardless of technical expertise, can launch a campaign with minimal effort.
    - **Customizable Funding Goals**: Campaign creators can set their funding goals in KreativeToken (KT), ensuring that the campaign's financial needs are clearly defined from the start.
    - **Time-Bound Campaigns**: Creators can specify the duration of their campaigns, ensuring that fundraising efforts are time-bound and focused. This feature helps build urgency and encourages potential backers to contribute before the deadline.
 
 2. **Contribution Mechanism**:
+
    - **Seamless Wallet Integration**: Contributors can easily connect their Ethereum wallets (e.g., MetaMask) to the platform and contribute Ether to the campaigns of their choice. Contributions are automatically converted to KreativeToken (KT) to ensure uniformity and to minimize gas fees.
    - **Real-Time Contribution Tracking**: The platform provides real-time updates on the amount of KT contributed to each campaign, allowing contributors to see how close a campaign is to reaching its goal.
 
 3. **Goal Verification and Fund Management**:
+
    - **Automated Goal Verification**: The smart contract automatically verifies whether a campaign's funding goal has been met by the specified deadline. This eliminates the need for manual oversight and ensures that the process is fair and transparent.
    - **Secure Fund Withdrawal**: Once a campaign meets its funding goal, the creator can withdraw the collected funds in KreativeToken (KT). The withdrawal process is secure and straightforward, with all transactions recorded on the blockchain for full transparency.
    - **Refund Mechanism**: If a campaign does not meet its funding goal, contributors can claim refunds for their contributions. The smart contract handles this process automatically, ensuring that refunds are issued promptly and fairly.
 
 4. **Low Transaction Fees**:
+
    - **1% Platform Fee**: Unlike traditional crowdfunding platforms that charge fees of 5% or more, Kreative Capital charges a minimal 1% fee on all funds raised. This ensures that campaign creators keep more of their funds, maximizing the impact of each campaign.
    - **Efficient Gas Usage**: By using KreativeToken (KT) for all transactions, the platform minimizes gas fees, making it more cost-effective for users.
 
 5. **Dashboard and Campaign Management**:
+
    - **Comprehensive Dashboard**: Campaign creators and contributors can access a detailed dashboard that provides insights into campaign performance, including the amount of KT raised, the number of contributors, and the time remaining.
    - **Campaign Monitoring**: The platform allows users to monitor the progress of their campaigns in real-time, making it easy to track contributions, manage funds, and communicate with backers.
 
 6. **Security and Transparency**:
+
    - **Immutable Blockchain Records**: All transactions on the platform are recorded on the Ethereum blockchain, ensuring that the data is immutable, transparent, and secure.
    - **Decentralized Data Storage** (Optional): For campaigns that require additional data storage, the platform can integrate with IPFS, providing a decentralized solution that guarantees data integrity and accessibility.
 
@@ -192,15 +202,19 @@ The Kreative Capital platform was built using a combination of cutting-edge tech
 Kreative Capital aims to deliver the following outcomes:
 
 1. **Functional Decentralized Crowdfunding Platform:**
+
    - A working platform that allows users to create, manage, and contribute to crowdfunding campaigns using Ethereum smart contracts and KreativeToken (KT).
 
 2. **Seamless User Experience:**
+
    - A user-friendly interface that enables easy interaction with the platform, including campaign creation, fund contribution, and progress tracking, all within a decentralized environment.
 
 3. **Secure and Transparent Fund Management:**
+
    - Transparent handling of funds through smart contracts, ensuring that contributions are securely managed, and refunds are automatically processed if a campaign's goal is not met.
 
 4. **Low-Cost Crowdfunding:**
+
    - A platform that minimizes fees, charging only a 1% fee on successful campaigns, thus allowing campaign creators to retain more funds compared to traditional crowdfunding platforms.
 
 5. **Comprehensive Documentation:**
@@ -211,13 +225,16 @@ Kreative Capital aims to deliver the following outcomes:
 The success of Kreative Capital will be evaluated based on the following criteria:
 
 1. **Technical Implementation:**
+
    - The correctness and efficiency of the smart contracts, including their ability to manage contributions, verify goals, and handle fund withdrawals or refunds as intended.
    - The integration of the front-end with the Ethereum blockchain, ensuring seamless interaction between users and the smart contracts.
 
 2. **User Interface and Experience:**
+
    - The usability and design of the platform's front-end, including ease of navigation, responsiveness, and clarity of information provided to users.
 
 3. **Security and Transparency:**
+
    - The robustness of the smart contracts against common vulnerabilities, ensuring the security of funds and transparency in all transactions.
    - The transparency of the platform in handling contributions, withdrawals, and refunds, with all actions recorded on the blockchain.
 
@@ -480,5 +497,6 @@ Special thanks to all the contributors and testers who provided valuable feedbac
 This project was built by Alexandr Climenco as the final project for the 2024 UM FinTech Bootcamp. The Kreative Capital platform represents a culmination of the skills and knowledge acquired throughout the bootcamp, showcasing a deep understanding of blockchain technology, smart contract development, and decentralized applications (DApps).
 
 For more information or to connect with the author:
+
 - GitHub: [GitHub Profile](https://github.com/AlexC3105)
 - Email: [digital.liberators@gmail.com](mailto:digital.liberators@gmail.com)
