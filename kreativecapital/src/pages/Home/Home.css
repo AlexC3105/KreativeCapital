@@ -62,14 +62,13 @@ canvas {
 /* Campaigns container styling */
 #campaigns-container {
     display: flex;
-    justify-content: center; /* Center the container horizontally */
-    align-items: center; /* Center the content vertically within the container */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center the content horizontally within the container */
     width: 100%;
     padding: 20px;
     margin-top: 20px;
     min-height: 200px; /* Ensure there's enough height for centering */
     text-align: center; /* Center the text */
-    flex-direction: column; /* Arrange content in a column */
 }
 
 /* If there are no campaigns available */
@@ -84,19 +83,18 @@ canvas {
 /* Campaigns grid styling */
 .campaigns-grid {
     display: flex;
-    flex-wrap: wrap; /* Allows the cards to wrap to the next line */
+    flex-direction: column; /* Stack campaign cards vertically */
     gap: 20px; /* Space between cards */
-    justify-content: center; /* Center the cards horizontally */
-    max-width: 1200px; /* Limit the width of the grid */
-    width: 100%;
+    align-items: center; /* Center the cards horizontally */
+    width: 100%; /* Ensure the grid takes up the full width */
 }
 
 /* Campaign card styling */
 .campaign-card {
     background-color: #3b1e4d; /* Slightly darker background for contrast */
     color: #fff;
-    padding: 15px;
-    margin: 10px;
+    padding: 5px;
+    margin-bottom: 20px; /* Space between stacked cards */
     width: 90%;
     max-width: 400px;
     border-radius: 10px;

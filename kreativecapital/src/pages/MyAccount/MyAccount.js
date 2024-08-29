@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import './MyAccount.css';
-import { ethers } from 'ethers';
+import { ethers, formatEther, parseEther } from 'ethers';  // Import necessary functions directly
 
 import kreativeTokenJSON from '../../abi/KreativeToken.json';
 import crowdfundingFactoryABI from '../../abi/CrowdfundingFactory.json';
@@ -35,7 +35,7 @@ const MyAccount = () => {
   const loadTokenSupply = useCallback(async () => {
     try {
       const supply = await kreativeTokenContract.totalSupply();
-      setKtSupply(parseFloat(ethers.formatEther(supply)));
+      setKtSupply(parseFloat(formatEther(supply)));
       console.log("KT Supply Loaded:", supply.toString());
     } catch (err) {
       console.error('Failed to load KT token supply:', err);
@@ -46,14 +46,14 @@ const MyAccount = () => {
     async (account) => {
       try {
         const balance = await provider.getBalance(account);
-        setEtherBalance(parseFloat(ethers.formatEther(balance)));
+        setEtherBalance(parseFloat(formatEther(balance)));
 
         const ktBalance = await kreativeTokenContract.balanceOf(account);
-        setKtBalance(parseFloat(ethers.formatEther(ktBalance)));
+        setKtBalance(parseFloat(formatEther(ktBalance)));
 
         console.log("Balances Loaded for Account:", account);
-        console.log("Ether Balance:", ethers.formatEther(balance));
-        console.log("KT Balance:", ethers.formatEther(ktBalance));
+        console.log("Ether Balance:", formatEther(balance));
+        console.log("KT Balance:", formatEther(ktBalance));
       } catch (err) {
         console.error('Failed to load balances:', err);
       }
@@ -80,8 +80,8 @@ const MyAccount = () => {
           userCampaigns.push({
             id: campaignId.toString(), // Ensure id is a string
             contractAddress: campaignAddress, // Ensure contractAddress is a string
-            goalAmount: ethers.formatEther(goalAmount),
-            totalContributed: ethers.formatEther(totalContributed),
+            goalAmount: formatEther(goalAmount),
+            totalContributed: formatEther(totalContributed),
             status: isActive ? 'Active' : 'Inactive',
           });
 
@@ -135,17 +135,35 @@ const MyAccount = () => {
   }, [provider, loadBalances, loadCampaigns, loadTokenSupply]);
 
   const handleBuyKt = async () => {
-    if (!selectedAccount || !etherAmount) return;
-
+    if (!selectedAccount || !etherAmount) {
+      console.log("No account selected or no ether amount specified.");
+      return;
+    }
+  
     try {
-      const signer = provider.getSigner(selectedAccount); // Ensure that signer is correctly obtained
-      const connectedContract = kreativeTokenContract.connect(signer); // Connect contract with signer
-      const transaction = await connectedContract.buyTokens({ value: ethers.parseEther(etherAmount) });
-
-      await transaction.wait();
-
+      console.log(`Attempting to buy KT with account: ${selectedAccount} and amount: ${etherAmount} ETH`);
+  
+      const signer = await provider.getSigner(selectedAccount); // Await the promise to resolve the signer
+      if (!signer) {
+        console.error("Failed to get signer.");
+        return;
+      }
+      console.log("Signer obtained:", signer);
+  
+      const connectedContract = kreativeTokenContract.connect(signer);
+      console.log("Connected Contract:", connectedContract);
+  
+      const valueInWei = ethers.parseEther(etherAmount);
+      console.log(`Value in Wei: ${valueInWei}`);
+  
+      const transaction = await connectedContract.buyTokens({ value: valueInWei });
+      console.log("Transaction sent:", transaction);
+  
+      const receipt = await transaction.wait();
+      console.log("Transaction mined:", receipt);
+  
       console.log("KT Purchased:", etherAmount);
-
+  
       await loadBalances(selectedAccount); // Reload balances after the purchase
       setEtherAmount(''); // Reset the Ether amount input
     } catch (err) {

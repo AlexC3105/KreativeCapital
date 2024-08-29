@@ -4,27 +4,34 @@ import Web3 from 'web3';
 import CrowdfundingCampaign from '../../abi/CrowdfundingCampaign.json';
 
 const Dashboard = () => {
-  const [campaignId, setCampaignId] = useState('');
+  const [campaignAddress, setCampaignAddress] = useState('');
   const [campaignDetails, setCampaignDetails] = useState(null);
   const [web3] = useState(new Web3(process.env.REACT_APP_GANACHE_RPC_URL));
 
   const handleInputChange = (e) => {
-    setCampaignId(e.target.value);
+    setCampaignAddress(e.target.value);
   };
 
   const handleCheckStatus = async () => {
     try {
-      if (!campaignId) {
-        console.error("Campaign ID is not provided.");
+      if (!campaignAddress) {
+        console.error("Campaign address is not provided.");
         return;
       }
 
-      const campaignContract = new web3.eth.Contract(CrowdfundingCampaign.abi, campaignId);
+      // Verify if the input is a valid Ethereum address
+      if (!web3.utils.isAddress(campaignAddress)) {
+        console.error("Invalid campaign address provided.");
+        alert("Invalid campaign address. Please enter a valid Ethereum address.");
+        return;
+      }
+
+      const campaignContract = new web3.eth.Contract(CrowdfundingCampaign.abi, campaignAddress);
 
       // Fetch the campaign details using the correct method names from the ABI
-      const goalAmount = await campaignContract.methods.goalAmount().call();
-      const totalContributed = await campaignContract.methods.totalContributed().call();
-      const deadline = await campaignContract.methods.deadline().call();
+      const goalAmount = BigInt(await campaignContract.methods.goalAmount().call());
+      const totalContributed = BigInt(await campaignContract.methods.totalContributed().call());
+      const deadline = Number(await campaignContract.methods.deadline().call()); // Ensure deadline is a Number
 
       // Calculate remaining time
       const currentTime = Math.floor(Date.now() / 1000);
@@ -35,32 +42,32 @@ const Dashboard = () => {
       const minutesLeft = Math.floor((secondsLeft % 3600) / 60);
 
       const fetchedCampaignDetails = {
-        name: "Campaign Name", // Assuming you want to add the campaign name from somewhere
-        description: "Campaign Description", // Assuming you want to add the description from somewhere
-        fundingGoal: goalAmount / 1e18, // Convert from Wei to Ether
+        name: "Campaign Name", // Placeholder for campaign name
+        description: "Campaign Description", // Placeholder for campaign description
+        fundingGoal: Number(goalAmount) / 1e18, // Convert from BigInt to Number and then from Wei to Ether
         daysLeft: daysLeft,
         hoursLeft: hoursLeft,
         minutesLeft: minutesLeft,
-        amountRaised: totalContributed / 1e18, // Convert from Wei to Ether
+        amountRaised: Number(totalContributed) / 1e18, // Convert from BigInt to Number and then from Wei to Ether
       };
 
       setCampaignDetails(fetchedCampaignDetails);
     } catch (error) {
       console.error("Error fetching campaign data:", error);
-      alert("Failed to fetch campaign data. Please check the campaign ID and try again.");
+      alert("Failed to fetch campaign data. Please check the campaign address and try again.");
     }
   };
 
-  const isCheckButtonActive = campaignId.trim() !== '';
+  const isCheckButtonActive = campaignAddress.trim() !== '';
 
   return (
     <div className="dashboard-container">
       <h2>Campaign Dashboard</h2>
       <input
         type="text"
-        value={campaignId}
+        value={campaignAddress}
         onChange={handleInputChange}
-        placeholder="Enter Campaign ID"
+        placeholder="Enter Campaign Contract Address"
       />
       <button
         className={`check-button ${isCheckButtonActive ? 'active' : ''}`}
@@ -81,14 +88,14 @@ const Dashboard = () => {
           <div className="progress-bar-container">
             <div
               className="progress-bar"
-              style={{ width: `${campaignDetails.amountRaised}%`, backgroundColor: campaignDetails.amountRaised >= 100 ? '#48ff00' : '#ff0000' }}
+              style={{ width: `${(campaignDetails.amountRaised / campaignDetails.fundingGoal) * 100}%`, backgroundColor: (campaignDetails.amountRaised / campaignDetails.fundingGoal) >= 1 ? '#48ff00' : '#ff0000' }}
             >
-              {campaignDetails.amountRaised}%
+              {(campaignDetails.amountRaised / campaignDetails.fundingGoal) * 100}%
             </div>
           </div>
           <button
-            className={`withdraw-button ${campaignDetails.amountRaised >= 100 ? 'active' : ''}`}
-            disabled={campaignDetails.amountRaised < 100}
+            className={`withdraw-button ${(campaignDetails.amountRaised / campaignDetails.fundingGoal) >= 1 ? 'active' : ''}`}
+            disabled={(campaignDetails.amountRaised / campaignDetails.fundingGoal) < 1}
           >
             Withdraw Funds
           </button>
