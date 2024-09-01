@@ -15,15 +15,18 @@ footer {
   background-color: #000000; /* Black background for footer */
   color: #71F2E3; /* Updated text color for footer */
   font-family: 'Cinzel', serif; /* Font for footer text */
-  padding: 20px 0;
+  padding: 10px 0; /* Reduced padding */
   text-align: center;
   position: relative;
   width: 100%;
+  height: auto; /* Ensure height is only as much as needed */
+  margin-top: auto; /* Ensure footer stays at the bottom */
 }
 
 footer p {
-  margin: 0;
+  margin: 0; /* Remove margin */
   font-size: 16px;
+  line-height: 1.2; /* Adjust line height for better spacing */
 }
 
 footer .glow-text::before {

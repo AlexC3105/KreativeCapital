@@ -205,3 +205,9 @@ footer {
     margin-top: auto; /* Ensure the footer stays at the bottom */
     font-weight: bold; /* Make the footer text bold */
 }
+
+.content-wrapper {
+    min-height: calc(100vh - 40px); /* 40px accounts for the footer's height */
+    display: flex;
+    flex-direction: column;
+  }

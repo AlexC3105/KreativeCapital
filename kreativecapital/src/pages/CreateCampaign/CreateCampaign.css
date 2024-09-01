@@ -1,10 +1,20 @@
+/* General page styles */
+.create-campaign-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures the page covers the entire viewport height */
+  background-color: #2d0d35; /* Ensure this matches the eggplant color */
+}
+
 /* General form container styles */
 .create-campaign-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ensures it covers the full height of the viewport */
+  flex: 1; /* Allows this container to take up available space */
+  box-sizing: border-box;
+  padding-bottom: 20px; /* Ensures that the footer has space */
 }
 
 /* Form styling */

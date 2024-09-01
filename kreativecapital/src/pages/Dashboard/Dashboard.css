@@ -1,3 +1,11 @@
+/* Apply the purple background to the entire page */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2C0A35; /* Eggplant color */
+}
+
 /* Dashboard container */
 .dashboard-container {
     background-color: #2C0A35; /* Match the background color */
@@ -8,7 +16,7 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    min-height: 100vh; /* Ensure the container covers the full height */
+    min-height: calc(100vh - 40px); /* Ensure the container covers the full height, subtracting padding for footer */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center the content */
