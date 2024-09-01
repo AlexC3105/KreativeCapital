@@ -12,10 +12,10 @@ body {
 
 /* Footer styles */
 footer {
-  background-color: #000000; /* Black background for footer */
+  background-color: #080909; /* Black background for footer */
   color: #71F2E3; /* Updated text color for footer */
   font-family: 'Cinzel', serif; /* Font for footer text */
-  padding: 10px 0; /* Reduced padding */
+  padding: 20px 0; /* Reduced padding */
   text-align: center;
   position: relative;
   width: 100%;
@@ -25,7 +25,7 @@ footer {
 
 footer p {
   margin: 0; /* Remove margin */
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.2; /* Adjust line height for better spacing */
 }
 
@@ -36,7 +36,7 @@ footer .glow-text::before {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: 150%;
   height: 100%;
   background-size: 200%;
   z-index: -1;

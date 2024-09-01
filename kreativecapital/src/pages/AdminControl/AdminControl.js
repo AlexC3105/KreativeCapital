@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { JsonRpcProvider, Contract, parseUnits, formatUnits } from 'ethers';
+import { JsonRpcProvider, Contract } from 'ethers';
+import { parseUnits, formatUnits } from 'ethers';
 import './AdminControl.css';
 
 const AdminControl = ({ contractAddress, abi, providerUrl }) => {
@@ -15,13 +16,15 @@ const AdminControl = ({ contractAddress, abi, providerUrl }) => {
   const correctPinHash = '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'; // Hashed value of "1234"
 
   useEffect(() => {
-    const loadAccounts = async () => {
+    const loadAccountsAndContract = async () => {
       try {
         if (!providerUrl) {
           throw new Error('Provider URL is not defined.');
         }
 
+        // Initialize the provider
         const provider = new JsonRpcProvider(providerUrl);
+        console.log('Provider initialized:', provider);
 
         // Load accounts from .env
         const accountsFromEnv = [
@@ -50,8 +53,12 @@ const AdminControl = ({ contractAddress, abi, providerUrl }) => {
           throw new Error('Contract address is not defined.');
         }
 
+        // Create a signer using the selected account
         const signer = provider.getSigner(accountsFromEnv[0]);
+        console.log('Signer initialized:', signer);
+
         const contractInstance = new Contract(contractAddress, abi, signer);
+        console.log('Contract instance created:', contractInstance);
 
         setContract(contractInstance);
       } catch (error) {
@@ -59,7 +66,7 @@ const AdminControl = ({ contractAddress, abi, providerUrl }) => {
       }
     };
 
-    loadAccounts();
+    loadAccountsAndContract();
   }, [providerUrl, contractAddress, abi]);
 
   const handlePinChange = (e) => {

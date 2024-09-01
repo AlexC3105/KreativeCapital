@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from '../Navbar/Navbar';
 import AppRoutes from '../../AppRoutes';
 import Footer from '../Footer/Footer';
+import kreativeTokenABI from '../../abi/KreativeToken.json'; // Ensure correct import path
 
 const App = () => {
   const [campaigns, setCampaigns] = useState([
@@ -60,11 +61,21 @@ const App = () => {
     setCampaigns((prevCampaigns) => [campaign, ...prevCampaigns]);
   };
 
+  const providerUrl = process.env.REACT_APP_GANACHE_RPC_URL;
+  const contractAddress = process.env.REACT_APP_KREATIVE_TOKEN_ADDRESS;
+  const abi = kreativeTokenABI.abi;
+
   return (
     <div className="app-container">
       <Navbar />
       <main className="content-container">
-        <AppRoutes onNewCampaign={handleNewCampaign} campaigns={campaigns} />
+        <AppRoutes
+          onNewCampaign={handleNewCampaign}
+          campaigns={campaigns}
+          providerUrl={providerUrl}
+          contractAddress={contractAddress}
+          abi={abi}
+        />
       </main>
       <Footer />
     </div>
